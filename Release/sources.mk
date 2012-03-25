@@ -23,8 +23,4 @@ S_UPPER_DEPS :=
 SUBDIRS := \
 usbdrv \
 . \
-control\ utility \
-control\ utility/usbdrv \
-control\ utility/libusb/lib/dynamic \
-control\ utility/libusb/examples \
 

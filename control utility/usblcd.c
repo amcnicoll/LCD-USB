@@ -25,7 +25,6 @@
 #define BEGIN_TRANSMIT 	10
 #define SEND_CHAR		11
 #define ESCAPE_CHAR		94
-#define SLEEP_TIME		1
 
 /* Used to get descriptor strings for device identification */
 static int usbGetDescriptorString(usb_dev_handle *dev, int index, int langid, 
@@ -151,23 +150,25 @@ int main(int argc, char **argv) {
 	else {
 		// Decode string into uint8 array
 		int i;
-		int strbuffer[16];
+		int k = 0;
+		int strbuffer[16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 		for(i = 0; i<strlen(argv[2]); i++){
 			// Check for escape char
 			if(argv[2][i]==ESCAPE_CHAR){
 				i++;
-				strbuffer[i] = atoi(argv[2][i]);
+				char escstring[3] = {argv[2][i],0,0};
+				strbuffer[k] = atoi(escstring);
 			}
 			// Otherwise copy over to buffer
 			else
-				strbuffer[i] = argv[2][i];
+				strbuffer[k] = argv[2][i];
+			k++;
 		}
 	
 		// Tell AVR to listen up
 		nBytes = usb_control_msg(handle, 
 			USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, 
 			BEGIN_TRANSMIT, 0, 0, (char *)buffer, sizeof(buffer), 5000);
-		//sleep(SLEEP_TIME); 
 		
 		// Send chars
 		for(i = 0; i<16; i++){

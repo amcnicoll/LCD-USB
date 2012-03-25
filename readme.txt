@@ -20,9 +20,13 @@ The free V-USB library (http://www.obdev.at/products/vusb/index.html) is used fo
 ***/ Encoding /***
 
 Strings sent to the control utility are send as expected, with two important exceptions:
-- Special characters can be accessed with the escape character "~" followed by a number, corresponding to:
+- Special characters can be accessed with the escape character set "^^" followed by a number, corresponding to:
 	0: Space
 	1-5: Progress blocks from 1/5 to full
 	6: Left bookend (progress bar border)
 	7: Right bookend 
 - No spaces may be sent; this marks the string as another argument. Instead use "~0".
+
+TODO
+- Fix the way control util handles escape characters - requires two ^^ rather than one for some reason
+- General robustness on control util input

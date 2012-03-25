@@ -20,18 +20,26 @@ uint8_t lna1[16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};				// Screen A, Line 1
 uint8_t lnb0[16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};				// Screen B, Line 0
 uint8_t lnb1[16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};				// Screen B, Line 1
 
+// Used for ongoing transmissions
+uint8_t buff[16];				// Build transmitted strings here
+uint8_t addr;
+
 // Debug
-uint8_t rcvd[16] = {82, 101, 99, 105, 101, 118, 101, 100, 33, 0, 0, 0, 0, 0, 0, 0};				// Test string: "Recieved!"
-uint8_t init[16] = {87, 97, 105, 116, 105, 110, 103, 46, 46, 46, 46, 46, 46, 46, 46, 46};		// Test string: "Waiting......"
+uint8_t lcdinit[16] = {76, 67, 68, 0, 82, 101, 97, 100, 121, 33, 0, 0, 0, 0, 0, 0};				// String: "LCD Ready!"
+uint8_t usbinit[16] = {85, 83, 66, 0, 82, 101, 97, 100, 121, 33, 0, 0, 0, 0, 0, 0};		// Test string: "USB Ready!"
 
 int main(void)
 {
+	// PWM/debug init
+	set_output(DDRD,6);
+
 	// LCD initialization
-	_delay_ms(500); 		// Wait for power fluctuations to clear
-	CHA_LCDinit();			// init LCD bit, dual line, cursor right
-	CHA_LCDclr();			// clears LCD
-	CHB_LCDinit();			// init LCD bit, dual line, cursor right
-	CHB_LCDclr();			// clears LCD
+	_delay_ms(200);
+	CHA_LCDinit();
+	CHA_LCDclr();
+	CHB_LCDinit();
+	CHB_LCDclr();
+	CHA_LCDstringLine(lcdinit,0);
 
 	// USB initialization
     wdt_enable(WDTO_1S); // enable 1s watchdog timer
@@ -44,9 +52,7 @@ int main(void)
     }
     usbDeviceConnect();
     sei(); // Enable interrupts after re-enumeration
-
-	CHA_LCDstringLine(init,rand() % 2);
-	CHB_LCDstringLine(init,rand() % 2);
+    CHB_LCDstringLine(usbinit,0);
 
 	// Feed watchdog and poll USB forever
     while(1) {
@@ -66,7 +72,23 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8]) {
 	cmdID = (rq->wValue.bytes[0]);
 
 	if(outputID==1){
-		CHA_LCDstringLine(rcvd,rand() % 2);
+		set_high(PORTD,6);	// Debug code
+	} else if(outputID==10){
+		// Expecting a string! Clear buffer and set index.
+		addr = 0;
+	} else if(outputID==11){
+		// Got a char. Store it in the buffer.
+		buff[addr] = cmdID;
+		addr++;
+	} else if(outputID==6){
+		// For the rest, we finished receiving the string; post it to proper line.
+		CHA_LCDstringLine(buff,0);
+	} else if(outputID==7){
+		CHA_LCDstringLine(buff,1);
+	} else if(outputID==8){
+		CHB_LCDstringLine(buff,0);
+	} else if (outputID==9){
+		CHB_LCDstringLine(buff,1);
 	}
 
 	return 0;
