@@ -9,6 +9,10 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include usbdrv/subdir.mk
+-include control\ utility/usbdrv/subdir.mk
+-include control\ utility/libusb/lib/dynamic/subdir.mk
+-include control\ utility/libusb/examples/subdir.mk
+-include control\ utility/subdir.mk
 -include subdir.mk
 -include objects.mk
 

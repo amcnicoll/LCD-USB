@@ -1,0 +1,35 @@
+
+	box = PORTB
+	Turn on 3rd bit
+	PORTB = PORTB | 00000100
+	PORTB = PORTB | (data<<7)
+_________________________________________________
+
+usbtest: "101" string to int "101"
+main: 
+__________________________________
+Usbrequest type is a struct
+typedef struct usbRequest{
+    uchar       bmRequestType;
+    uchar       bRequest;
+    usbWord_t   wValue;
+    usbWord_t   wIndex;
+    usbWord_t   wLength;
+}usbRequest_t;
+
+bRequest is the 8-bit uchar.
+
+__________________________________ Working setup function
+
+	if((rq->wValue.bytes[0])==0){
+	PORTB = PORTB & ~(1<<((rq->bRequest)-1));
+	}
+	else if((rq->wValue.bytes[0])==1){
+	PORTB = PORTB | (1<<((rq->bRequest)-1));
+	}
+	else if((rq->wValue.bytes[0])==3){
+	PORTB = 0x00;
+	}
+	else if((rq->wValue.bytes[0])==255){
+	PORTB = 0x07;
+	}
