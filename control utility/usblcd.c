@@ -24,7 +24,7 @@
 // commands for string communication
 #define BEGIN_TRANSMIT 	10
 #define SEND_CHAR		11
-#define ESCAPE_CHAR		94
+#define ESCAPE_CHAR		126
 
 /* Used to get descriptor strings for device identification */
 static int usbGetDescriptorString(usb_dev_handle *dev, int index, int langid, 
