@@ -19,50 +19,50 @@
 //******************************************************
 
 #define CHA_LCD_RS	0 	//define MCU pin connected to LCD RS
-#define CHA_LCD_RW	1 	//define MCU pin connected to LCD R/W
-#define CHA_LCD_E	6	//define MCU pin connected to LCD E
-#define CHA_LCD_D4	5	//define MCU pin connected to LCD D4
-#define CHA_LCD_D5	4	//define MCU pin connected to LCD D5
-#define CHA_LCD_D6	3	//define MCU pin connected to LCD D6
-#define CHA_LCD_D7	2	//define MCU pin connected to LCD D7
+#define CHA_LCD_RW	0 	//define MCU pin connected to LCD R/W; just GND in our case
+#define CHA_LCD_E	1	//define MCU pin connected to LCD E
+#define CHA_LCD_D4	2	//define MCU pin connected to LCD D4
+#define CHA_LCD_D5	3	//define MCU pin connected to LCD D5
+#define CHA_LCD_D6	4	//define MCU pin connected to LCD D6
+#define CHA_LCD_D7	5	//define MCU pin connected to LCD D7
 
 #define CHB_LCD_RS	0 	//define MCU pin connected to LCD RS
-#define CHB_LCD_RW	1 	//define MCU pin connected to LCD R/W
-#define CHB_LCD_E	2	//define MCU pin connected to LCD E
-#define CHB_LCD_D4	3	//define MCU pin connected to LCD D4
-#define CHB_LCD_D5	4	//define MCU pin connected to LCD D5
-#define CHB_LCD_D6	7	//define MCU pin connected to LCD D6
-#define CHB_LCD_D7	6	//define MCU pin connected to LCD D7
+#define CHB_LCD_RW	0 	//define MCU pin connected to LCD R/W; just GND in our case
+#define CHB_LCD_E	1	//define MCU pin connected to LCD E
+#define CHB_LCD_D4	2	//define MCU pin connected to LCD D4
+#define CHB_LCD_D5	3	//define MCU pin connected to LCD D5
+#define CHB_LCD_D6	4	//define MCU pin connected to LCD D6
+#define CHB_LCD_D7	5	//define MCU pin connected to LCD D7
 
-#define CHA_LDPRS PORTD		//RS pin assignment
-#define CHA_LDDRS DDRD
-#define CHA_LDPRW PORTD		//RW pin assignment
-#define CHA_LDDRW DDRD
-#define CHA_LDPE PORTD		//E pin assignment
-#define CHA_LDDE DDRD
-#define CHA_LDPD4 PORTD		//D4 pin assignment
-#define CHA_LDDD4 DDRD
-#define CHA_LDPD5 PORTD		//D5 pin assignment
-#define CHA_LDDD5 DDRD
-#define CHA_LDPD6 PORTD		//D6 pin assignment
-#define CHA_LDDD6 DDRD
-#define CHA_LDPD7 PORTD		//D7 pin assignment
-#define CHA_LDDD7 DDRD
+#define CHA_LDPRS PORTB		//RS pin assignment
+#define CHA_LDDRS DDRB
+#define CHA_LDPRW PORTB		//RW pin assignment
+#define CHA_LDDRW DDRB
+#define CHA_LDPE PORTB		//E pin assignment
+#define CHA_LDDE DDRB
+#define CHA_LDPD4 PORTB		//D4 pin assignment
+#define CHA_LDDD4 DDRB
+#define CHA_LDPD5 PORTB		//D5 pin assignment
+#define CHA_LDDD5 DDRB
+#define CHA_LDPD6 PORTB		//D6 pin assignment
+#define CHA_LDDD6 DDRB
+#define CHA_LDPD7 PORTB		//D7 pin assignment
+#define CHA_LDDD7 DDRB
 
-#define CHB_LDPRS PORTB		//RS pin assignment
-#define CHB_LDDRS DDRB
-#define CHB_LDPRW PORTB		//RW pin assignment
-#define CHB_LDDRW DDRB
-#define CHB_LDPE PORTB		//E pin assignment
-#define CHB_LDDE DDRB
-#define CHB_LDPD4 PORTB		//D4 pin assignment
-#define CHB_LDDD4 DDRB
-#define CHB_LDPD5 PORTB		//D5 pin assignment
-#define CHB_LDDD5 DDRB
-#define CHB_LDPD6 PORTB		//D6 pin assignment
-#define CHB_LDDD6 DDRB
-#define CHB_LDPD7 PORTB		//D7 pin assignment
-#define CHB_LDDD7 DDRB
+#define CHB_LDPRS PORTC		//RS pin assignment
+#define CHB_LDDRS DDRC
+#define CHB_LDPRW PORTC		//RW pin assignment
+#define CHB_LDDRW DDRC
+#define CHB_LDPE PORTC		//E pin assignment
+#define CHB_LDDE DDRC
+#define CHB_LDPD4 PORTC		//D4 pin assignment
+#define CHB_LDDD4 DDRC
+#define CHB_LDPD5 PORTC		//D5 pin assignment
+#define CHB_LDDD5 DDRC
+#define CHB_LDPD6 PORTC		//D6 pin assignment
+#define CHB_LDDD6 DDRC
+#define CHB_LDPD7 PORTC		//D7 pin assignment
+#define CHB_LDDD7 DDRC
 
 // Some commands for LCD driver
 #define LCD_CLR             0	//DB0: clear display
