@@ -1,14 +1,8 @@
 ***/ Summary /***
 
-This code is for the LCD-USB project, which is a personal project aimed at producing two USB-controlled LCD readouts 
-for displaying information on the outside of a computer case. It consists of the Windows USB driver, the Windows
-communication binary (called the "control utility") and the AVR code.
+This code is for the LCD-USB project, which is a personal project aimed at producing two USB-controlled LCD readouts for displaying information on the outside of a computer case. It consists of the Windows USB driver, the Windows communication binary (called the "control utility") and the AVR code.
 
-The free V-USB library (http://www.obdev.at/products/vusb/index.html) is used for USB communications from our AVR;
-this is paired with libusb (http://www.libusb.org/) on Windows, which gives access to useful USB functions through
-C. The library used for LCD control on the AVR is a very heavily modified version of one from Scienceprog.com; it
-has little functionality beyond what we need, and supports two completely independent channels. The rest of the code
-is original and is more or less up for grabs until we settle on some sort of license...
+The free V-USB library (http://www.obdev.at/products/vusb/index.html) is used for USB communications from our AVR; this is paired with libusb (http://www.libusb.org/) on Windows, which gives access to useful USB functions through C. The library used for LCD control on the AVR is a very heavily modified version of one from Scienceprog.com; it has little functionality beyond what we need, and supports two completely independent channels. The rest of the code is original and is more or less up for grabs until we settle on some sort of license...
 
 ***/ User commands sent via control utility /***
 
