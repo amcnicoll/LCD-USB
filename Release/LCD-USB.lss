@@ -3,11 +3,11 @@ LCD-USB.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000022  00800100  00000b42  00000bd6  2**0
+  0 .data         00000022  00800100  00000b5a  00000bee  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000b42  00000000  00000000  00000094  2**1
+  1 .text         00000b5a  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          0000007c  00800122  00800122  00000bf8  2**0
+  2 .bss          0000007c  00800122  00800122  00000c10  2**0
                   ALLOC
 
 Disassembly of section .text:
@@ -77,7 +77,7 @@ Disassembly of section .text:
   fe:	11 e0       	ldi	r17, 0x01	; 1
  100:	a0 e0       	ldi	r26, 0x00	; 0
  102:	b1 e0       	ldi	r27, 0x01	; 1
- 104:	e2 e4       	ldi	r30, 0x42	; 66
+ 104:	ea e5       	ldi	r30, 0x5A	; 90
  106:	fb e0       	ldi	r31, 0x0B	; 11
  108:	02 c0       	rjmp	.+4      	; 0x10e <.do_copy_data_start>
 
@@ -103,8 +103,8 @@ Disassembly of section .text:
  11e:	ae 39       	cpi	r26, 0x9E	; 158
  120:	b1 07       	cpc	r27, r17
  122:	e1 f7       	brne	.-8      	; 0x11c <.do_clear_bss_loop>
- 124:	0e 94 65 05 	call	0xaca	; 0xaca <main>
- 128:	0c 94 9f 05 	jmp	0xb3e	; 0xb3e <_exit>
+ 124:	0e 94 70 05 	call	0xae0	; 0xae0 <main>
+ 128:	0c 94 ab 05 	jmp	0xb56	; 0xb56 <_exit>
 
 0000012c <__bad_interrupt>:
  12c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -1328,105 +1328,115 @@ Disassembly of section .text:
  a5e:	fc 01       	movw	r30, r24
  a60:	81 81       	ldd	r24, Z+1	; 0x01
  a62:	92 81       	ldd	r25, Z+2	; 0x02
- a64:	81 30       	cpi	r24, 0x01	; 1
+ a64:	88 23       	and	r24, r24
  a66:	11 f4       	brne	.+4      	; 0xa6c <usbFunctionSetup+0xe>
- a68:	5e 9a       	sbi	0x0b, 6	; 11
- a6a:	2d c0       	rjmp	.+90     	; 0xac6 <usbFunctionSetup+0x68>
- a6c:	8a 30       	cpi	r24, 0x0A	; 10
- a6e:	19 f4       	brne	.+6      	; 0xa76 <usbFunctionSetup+0x18>
- a70:	10 92 9d 01 	sts	0x019D, r1
- a74:	28 c0       	rjmp	.+80     	; 0xac6 <usbFunctionSetup+0x68>
- a76:	8b 30       	cpi	r24, 0x0B	; 11
- a78:	59 f4       	brne	.+22     	; 0xa90 <usbFunctionSetup+0x32>
- a7a:	80 91 9d 01 	lds	r24, 0x019D
- a7e:	e8 2f       	mov	r30, r24
- a80:	f0 e0       	ldi	r31, 0x00	; 0
- a82:	e3 57       	subi	r30, 0x73	; 115
- a84:	fe 4f       	sbci	r31, 0xFE	; 254
- a86:	90 83       	st	Z, r25
- a88:	8f 5f       	subi	r24, 0xFF	; 255
- a8a:	80 93 9d 01 	sts	0x019D, r24
- a8e:	1b c0       	rjmp	.+54     	; 0xac6 <usbFunctionSetup+0x68>
- a90:	86 30       	cpi	r24, 0x06	; 6
- a92:	21 f4       	brne	.+8      	; 0xa9c <usbFunctionSetup+0x3e>
- a94:	8d e8       	ldi	r24, 0x8D	; 141
- a96:	91 e0       	ldi	r25, 0x01	; 1
- a98:	60 e0       	ldi	r22, 0x00	; 0
- a9a:	05 c0       	rjmp	.+10     	; 0xaa6 <usbFunctionSetup+0x48>
- a9c:	87 30       	cpi	r24, 0x07	; 7
- a9e:	31 f4       	brne	.+12     	; 0xaac <usbFunctionSetup+0x4e>
- aa0:	8d e8       	ldi	r24, 0x8D	; 141
- aa2:	91 e0       	ldi	r25, 0x01	; 1
- aa4:	61 e0       	ldi	r22, 0x01	; 1
- aa6:	0e 94 16 03 	call	0x62c	; 0x62c <CHA_LCDstringLine>
- aaa:	0d c0       	rjmp	.+26     	; 0xac6 <usbFunctionSetup+0x68>
- aac:	88 30       	cpi	r24, 0x08	; 8
- aae:	21 f4       	brne	.+8      	; 0xab8 <usbFunctionSetup+0x5a>
- ab0:	8d e8       	ldi	r24, 0x8D	; 141
- ab2:	91 e0       	ldi	r25, 0x01	; 1
- ab4:	60 e0       	ldi	r22, 0x00	; 0
- ab6:	05 c0       	rjmp	.+10     	; 0xac2 <usbFunctionSetup+0x64>
- ab8:	89 30       	cpi	r24, 0x09	; 9
- aba:	29 f4       	brne	.+10     	; 0xac6 <usbFunctionSetup+0x68>
- abc:	8d e8       	ldi	r24, 0x8D	; 141
- abe:	91 e0       	ldi	r25, 0x01	; 1
- ac0:	61 e0       	ldi	r22, 0x01	; 1
- ac2:	0e 94 53 04 	call	0x8a6	; 0x8a6 <CHB_LCDstringLine>
- ac6:	80 e0       	ldi	r24, 0x00	; 0
- ac8:	08 95       	ret
+ a68:	5f 98       	cbi	0x0b, 7	; 11
+ a6a:	38 c0       	rjmp	.+112    	; 0xadc <usbFunctionSetup+0x7e>
+ a6c:	81 30       	cpi	r24, 0x01	; 1
+ a6e:	11 f4       	brne	.+4      	; 0xa74 <usbFunctionSetup+0x16>
+ a70:	5f 9a       	sbi	0x0b, 7	; 11
+ a72:	34 c0       	rjmp	.+104    	; 0xadc <usbFunctionSetup+0x7e>
+ a74:	82 30       	cpi	r24, 0x02	; 2
+ a76:	29 f4       	brne	.+10     	; 0xa82 <usbFunctionSetup+0x24>
+ a78:	0e 94 12 03 	call	0x624	; 0x624 <CHA_LCDclr>
+ a7c:	0e 94 4f 04 	call	0x89e	; 0x89e <CHB_LCDclr>
+ a80:	2d c0       	rjmp	.+90     	; 0xadc <usbFunctionSetup+0x7e>
+ a82:	8a 30       	cpi	r24, 0x0A	; 10
+ a84:	19 f4       	brne	.+6      	; 0xa8c <usbFunctionSetup+0x2e>
+ a86:	10 92 9d 01 	sts	0x019D, r1
+ a8a:	28 c0       	rjmp	.+80     	; 0xadc <usbFunctionSetup+0x7e>
+ a8c:	8b 30       	cpi	r24, 0x0B	; 11
+ a8e:	59 f4       	brne	.+22     	; 0xaa6 <usbFunctionSetup+0x48>
+ a90:	80 91 9d 01 	lds	r24, 0x019D
+ a94:	e8 2f       	mov	r30, r24
+ a96:	f0 e0       	ldi	r31, 0x00	; 0
+ a98:	e3 57       	subi	r30, 0x73	; 115
+ a9a:	fe 4f       	sbci	r31, 0xFE	; 254
+ a9c:	90 83       	st	Z, r25
+ a9e:	8f 5f       	subi	r24, 0xFF	; 255
+ aa0:	80 93 9d 01 	sts	0x019D, r24
+ aa4:	1b c0       	rjmp	.+54     	; 0xadc <usbFunctionSetup+0x7e>
+ aa6:	86 30       	cpi	r24, 0x06	; 6
+ aa8:	21 f4       	brne	.+8      	; 0xab2 <usbFunctionSetup+0x54>
+ aaa:	8d e8       	ldi	r24, 0x8D	; 141
+ aac:	91 e0       	ldi	r25, 0x01	; 1
+ aae:	60 e0       	ldi	r22, 0x00	; 0
+ ab0:	05 c0       	rjmp	.+10     	; 0xabc <usbFunctionSetup+0x5e>
+ ab2:	87 30       	cpi	r24, 0x07	; 7
+ ab4:	31 f4       	brne	.+12     	; 0xac2 <usbFunctionSetup+0x64>
+ ab6:	8d e8       	ldi	r24, 0x8D	; 141
+ ab8:	91 e0       	ldi	r25, 0x01	; 1
+ aba:	61 e0       	ldi	r22, 0x01	; 1
+ abc:	0e 94 16 03 	call	0x62c	; 0x62c <CHA_LCDstringLine>
+ ac0:	0d c0       	rjmp	.+26     	; 0xadc <usbFunctionSetup+0x7e>
+ ac2:	88 30       	cpi	r24, 0x08	; 8
+ ac4:	21 f4       	brne	.+8      	; 0xace <usbFunctionSetup+0x70>
+ ac6:	8d e8       	ldi	r24, 0x8D	; 141
+ ac8:	91 e0       	ldi	r25, 0x01	; 1
+ aca:	60 e0       	ldi	r22, 0x00	; 0
+ acc:	05 c0       	rjmp	.+10     	; 0xad8 <usbFunctionSetup+0x7a>
+ ace:	89 30       	cpi	r24, 0x09	; 9
+ ad0:	29 f4       	brne	.+10     	; 0xadc <usbFunctionSetup+0x7e>
+ ad2:	8d e8       	ldi	r24, 0x8D	; 141
+ ad4:	91 e0       	ldi	r25, 0x01	; 1
+ ad6:	61 e0       	ldi	r22, 0x01	; 1
+ ad8:	0e 94 53 04 	call	0x8a6	; 0x8a6 <CHB_LCDstringLine>
+ adc:	80 e0       	ldi	r24, 0x00	; 0
+ ade:	08 95       	ret
 
-00000aca <main>:
- aca:	56 9a       	sbi	0x0a, 6	; 10
- acc:	80 ed       	ldi	r24, 0xD0	; 208
- ace:	97 e0       	ldi	r25, 0x07	; 7
- ad0:	24 ef       	ldi	r18, 0xF4	; 244
- ad2:	31 e0       	ldi	r19, 0x01	; 1
- ad4:	f9 01       	movw	r30, r18
- ad6:	31 97       	sbiw	r30, 0x01	; 1
- ad8:	f1 f7       	brne	.-4      	; 0xad6 <main+0xc>
- ada:	01 97       	sbiw	r24, 0x01	; 1
- adc:	d9 f7       	brne	.-10     	; 0xad4 <main+0xa>
- ade:	0e 94 66 03 	call	0x6cc	; 0x6cc <CHA_LCDinit>
- ae2:	0e 94 12 03 	call	0x624	; 0x624 <CHA_LCDclr>
- ae6:	0e 94 a3 04 	call	0x946	; 0x946 <CHB_LCDinit>
- aea:	0e 94 4f 04 	call	0x89e	; 0x89e <CHB_LCDclr>
- aee:	82 e0       	ldi	r24, 0x02	; 2
- af0:	91 e0       	ldi	r25, 0x01	; 1
- af2:	60 e0       	ldi	r22, 0x00	; 0
- af4:	0e 94 16 03 	call	0x62c	; 0x62c <CHA_LCDstringLine>
- af8:	2e e0       	ldi	r18, 0x0E	; 14
- afa:	88 e1       	ldi	r24, 0x18	; 24
- afc:	90 e0       	ldi	r25, 0x00	; 0
- afe:	0f b6       	in	r0, 0x3f	; 63
- b00:	f8 94       	cli
- b02:	a8 95       	wdr
- b04:	80 93 60 00 	sts	0x0060, r24
- b08:	0f be       	out	0x3f, r0	; 63
- b0a:	20 93 60 00 	sts	0x0060, r18
- b0e:	0e 94 98 00 	call	0x130	; 0x130 <usbInit>
- b12:	53 9a       	sbi	0x0a, 3	; 10
- b14:	20 e0       	ldi	r18, 0x00	; 0
- b16:	40 e2       	ldi	r20, 0x20	; 32
- b18:	5e e4       	ldi	r21, 0x4E	; 78
+00000ae0 <main>:
+ ae0:	57 9a       	sbi	0x0a, 7	; 10
+ ae2:	5f 9a       	sbi	0x0b, 7	; 11
+ ae4:	80 ed       	ldi	r24, 0xD0	; 208
+ ae6:	97 e0       	ldi	r25, 0x07	; 7
+ ae8:	24 ef       	ldi	r18, 0xF4	; 244
+ aea:	31 e0       	ldi	r19, 0x01	; 1
+ aec:	f9 01       	movw	r30, r18
+ aee:	31 97       	sbiw	r30, 0x01	; 1
+ af0:	f1 f7       	brne	.-4      	; 0xaee <main+0xe>
+ af2:	01 97       	sbiw	r24, 0x01	; 1
+ af4:	d9 f7       	brne	.-10     	; 0xaec <main+0xc>
+ af6:	0e 94 66 03 	call	0x6cc	; 0x6cc <CHA_LCDinit>
+ afa:	0e 94 12 03 	call	0x624	; 0x624 <CHA_LCDclr>
+ afe:	0e 94 a3 04 	call	0x946	; 0x946 <CHB_LCDinit>
+ b02:	0e 94 4f 04 	call	0x89e	; 0x89e <CHB_LCDclr>
+ b06:	82 e0       	ldi	r24, 0x02	; 2
+ b08:	91 e0       	ldi	r25, 0x01	; 1
+ b0a:	60 e0       	ldi	r22, 0x00	; 0
+ b0c:	0e 94 16 03 	call	0x62c	; 0x62c <CHA_LCDstringLine>
+ b10:	2e e0       	ldi	r18, 0x0E	; 14
+ b12:	88 e1       	ldi	r24, 0x18	; 24
+ b14:	90 e0       	ldi	r25, 0x00	; 0
+ b16:	0f b6       	in	r0, 0x3f	; 63
+ b18:	f8 94       	cli
  b1a:	a8 95       	wdr
- b1c:	ca 01       	movw	r24, r20
- b1e:	01 97       	sbiw	r24, 0x01	; 1
- b20:	f1 f7       	brne	.-4      	; 0xb1e <main+0x54>
- b22:	2f 5f       	subi	r18, 0xFF	; 255
- b24:	2a 3f       	cpi	r18, 0xFA	; 250
- b26:	c9 f7       	brne	.-14     	; 0xb1a <main+0x50>
- b28:	53 98       	cbi	0x0a, 3	; 10
- b2a:	78 94       	sei
- b2c:	82 e1       	ldi	r24, 0x12	; 18
- b2e:	91 e0       	ldi	r25, 0x01	; 1
- b30:	60 e0       	ldi	r22, 0x00	; 0
- b32:	0e 94 53 04 	call	0x8a6	; 0x8a6 <CHB_LCDstringLine>
- b36:	a8 95       	wdr
- b38:	0e 94 9f 00 	call	0x13e	; 0x13e <usbPoll>
- b3c:	fc cf       	rjmp	.-8      	; 0xb36 <main+0x6c>
+ b1c:	80 93 60 00 	sts	0x0060, r24
+ b20:	0f be       	out	0x3f, r0	; 63
+ b22:	20 93 60 00 	sts	0x0060, r18
+ b26:	0e 94 98 00 	call	0x130	; 0x130 <usbInit>
+ b2a:	53 9a       	sbi	0x0a, 3	; 10
+ b2c:	20 e0       	ldi	r18, 0x00	; 0
+ b2e:	40 e2       	ldi	r20, 0x20	; 32
+ b30:	5e e4       	ldi	r21, 0x4E	; 78
+ b32:	a8 95       	wdr
+ b34:	ca 01       	movw	r24, r20
+ b36:	01 97       	sbiw	r24, 0x01	; 1
+ b38:	f1 f7       	brne	.-4      	; 0xb36 <main+0x56>
+ b3a:	2f 5f       	subi	r18, 0xFF	; 255
+ b3c:	2a 3f       	cpi	r18, 0xFA	; 250
+ b3e:	c9 f7       	brne	.-14     	; 0xb32 <main+0x52>
+ b40:	53 98       	cbi	0x0a, 3	; 10
+ b42:	78 94       	sei
+ b44:	82 e1       	ldi	r24, 0x12	; 18
+ b46:	91 e0       	ldi	r25, 0x01	; 1
+ b48:	60 e0       	ldi	r22, 0x00	; 0
+ b4a:	0e 94 53 04 	call	0x8a6	; 0x8a6 <CHB_LCDstringLine>
+ b4e:	a8 95       	wdr
+ b50:	0e 94 9f 00 	call	0x13e	; 0x13e <usbPoll>
+ b54:	fc cf       	rjmp	.-8      	; 0xb4e <main+0x6e>
 
-00000b3e <_exit>:
- b3e:	f8 94       	cli
+00000b56 <_exit>:
+ b56:	f8 94       	cli
 
-00000b40 <__stop_program>:
- b40:	ff cf       	rjmp	.-2      	; 0xb40 <__stop_program>
+00000b58 <__stop_program>:
+ b58:	ff cf       	rjmp	.-2      	; 0xb58 <__stop_program>

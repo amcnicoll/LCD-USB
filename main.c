@@ -30,8 +30,9 @@ uint8_t usbinit[16] = {85, 83, 66, 0, 82, 101, 97, 100, 121, 33, 0, 0, 0, 0, 0, 
 
 int main(void)
 {
-	// PWM/debug init
-	set_output(DDRD,6);
+	// Lights and fan initialization
+	set_output(DDRD,7);
+	set_high(PORTD,7);
 
 	// LCD initialization
 	_delay_ms(200);
@@ -71,8 +72,13 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8]) {
 	outputID = (rq->bRequest);
 	cmdID = (rq->wValue.bytes[0]);
 
-	if(outputID==1){
-		set_high(PORTD,6);	// Debug code
+	if (outputID==0)
+		set_low(PORTD,7);
+	else if(outputID==1)
+		set_high(PORTD,7);
+	else if(outputID==2){
+		CHA_LCDclr();
+		CHB_LCDclr();
 	} else if(outputID==10){
 		// Expecting a string! Clear buffer and set index.
 		addr = 0;
@@ -80,16 +86,17 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8]) {
 		// Got a char. Store it in the buffer.
 		buff[addr] = cmdID;
 		addr++;
-	} else if(outputID==6){
-		// For the rest, we finished receiving the string; post it to proper line.
-		CHA_LCDstringLine(buff,0);
-	} else if(outputID==7){
-		CHA_LCDstringLine(buff,1);
-	} else if(outputID==8){
-		CHB_LCDstringLine(buff,0);
-	} else if (outputID==9){
-		CHB_LCDstringLine(buff,1);
 	}
+
+	// For the rest, we finished receiving the string; post it to proper line.
+	else if(outputID==6)
+		CHA_LCDstringLine(buff,0);
+	else if(outputID==7)
+		CHA_LCDstringLine(buff,1);
+	else if(outputID==8)
+		CHB_LCDstringLine(buff,0);
+	else if (outputID==9)
+		CHB_LCDstringLine(buff,1);
 
 	return 0;
 }
