@@ -6,10 +6,10 @@ Gui, Add, Edit, x322 y130 w180 h20 Limit32 vLin4,
 Gui, Font, s16, Tahoma
 Gui, Add, Text, x172 y30 w280 h30 +Center +BackgroundTrans, LCD-USB Control Panel
 Gui, Font, s10, Tahoma
-Gui, Add, Button, x222 y90 w70 h20 , Line 1A
-Gui, Add, Button, x222 y130 w70 h20 , Line 2A
-Gui, Add, Button, x512 y90 w70 h20 , Line 1B
-Gui, Add, Button, x512 y130 w70 h20 , Line 2B
+Gui, Add, Button, x222 y90 w70 h20 , Line A0
+Gui, Add, Button, x222 y130 w70 h20 , Line A1
+Gui, Add, Button, x512 y90 w70 h20 , Line B0
+Gui, Add, Button, x512 y130 w70 h20 , Line B1
 Gui, Add, Slider, x322 y180 w180 h30 Range0-255 gFan1Slide vFan1, 20
 Gui, Add, Slider, x322 y220 w180 h30 Range0-255 gFan2Slide vFan2, 20
 Gui, Add, Slider, x322 y260 w180 h30 Range0-255 gLightSlide vLight, 20
@@ -24,25 +24,25 @@ Gui, Add, Text, x512 y260 w90 h30 , Lights
 Gui, Show, x522 y226 h320 w617, LCD-USB Control Panel
 Return
 
-ButtonLine1A:
+ButtonLineA0:
 Gui, Submit, NoHide
 StringReplace, Lin1, Lin1, %A_Space%, ~0, 1
 Run, usblcd.exe 6 %Lin1%,,Hide
 Return
 
-ButtonLine2A:
+ButtonLineA1:
 Gui, Submit, NoHide
 StringReplace, Lin2, Lin2, %A_Space%, ~0, 1
 Run, usblcd.exe 7 %Lin2%,,Hide
 Return
 
-ButtonLine1B:
+ButtonLineB0:
 Gui, Submit, NoHide
 StringReplace, Lin3, Lin3, %A_Space%, ~0, 1
 Run, usblcd.exe 8 %Lin3%,,Hide
 Return
 
-ButtonLine2B:
+ButtonLineB1:
 Gui, Submit, NoHide
 StringReplace, Lin4, Lin4, %A_Space%, ~0, 1
 Run, usblcd.exe 9 %Lin4%,,Hide
