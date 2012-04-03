@@ -16,7 +16,7 @@ main.d main.o: ../main.c C:\WinAVR-20100110\avr\include/avr/io.h \
   C:\Users\Anthony\Java\EclipseWork\LCD-USB\usbdrv/usbdrv.h \
   C:\Users\Anthony\Java\EclipseWork\LCD-USB\usbdrv/usbconfig.h \
   C:\Users\Anthony\Java\EclipseWork\LCD-USB\usbdrv/usbportability.h \
-  C:\WinAVR-20100110\avr\include/avr/pgmspace.h
+  C:\WinAVR-20100110\avr\include/avr/pgmspace.h ../config.h
 
 C:\WinAVR-20100110\avr\include/avr/io.h:
 
@@ -57,3 +57,5 @@ C:\Users\Anthony\Java\EclipseWork\LCD-USB\usbdrv/usbconfig.h:
 C:\Users\Anthony\Java\EclipseWork\LCD-USB\usbdrv/usbportability.h:
 
 C:\WinAVR-20100110\avr\include/avr/pgmspace.h:
+
+../config.h:
