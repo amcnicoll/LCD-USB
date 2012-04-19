@@ -1359,7 +1359,7 @@ Disassembly of section .text:
  aa0:	89 2b       	or	r24, r25
  aa2:	21 f4       	brne	.+8      	; 0xaac <usbFunctionSetup+0x4e>
  aa4:	80 91 b0 00 	lds	r24, 0x00B0
- aa8:	8f 77       	andi	r24, 0x7F	; 127
+ aa8:	8f 7d       	andi	r24, 0xDF	; 223
  aaa:	05 c0       	rjmp	.+10     	; 0xab6 <usbFunctionSetup+0x58>
  aac:	30 93 b4 00 	sts	0x00B4, r19
  ab0:	80 91 b0 00 	lds	r24, 0x00B0
@@ -1422,9 +1422,9 @@ Disassembly of section .text:
  b30:	08 95       	ret
 
 00000b32 <main>:
- b32:	56 9a       	sbi	0x0a, 6	; 10
- b34:	55 9a       	sbi	0x0a, 5	; 10
- b36:	53 9a       	sbi	0x0a, 3	; 10
+ b32:	55 9a       	sbi	0x0a, 5	; 10
+ b34:	53 9a       	sbi	0x0a, 3	; 10
+ b36:	56 9a       	sbi	0x0a, 6	; 10
  b38:	57 9a       	sbi	0x0a, 7	; 10
  b3a:	5f 9a       	sbi	0x0b, 7	; 11
  b3c:	83 ea       	ldi	r24, 0xA3	; 163

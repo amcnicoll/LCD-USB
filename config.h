@@ -11,9 +11,9 @@
 #define CONFIG_H_
 
 // Pins
-#define F1PIN	6
-#define F2PIN	5
-#define LPIN	3
+#define F1PIN	5
+#define F2PIN	3
+#define LPIN	6
 #define BLPIN	7
 
 // Ports

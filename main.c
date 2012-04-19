@@ -107,7 +107,7 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8]) {
 	}
 	else if(outputID==FAN2_SPEED){			// 3: Adjust fan 2 speed
 		if(cmdID==0)
-			TCCR2A = TCCR2A&0x7F;	// Turn off completely if we got a zero
+			TCCR2A = TCCR2A&0xDF;	// Turn off completely if we got a zero
 		else{
 			OCR2B = cmdID;			// Take PWM value
 			TCCR2A = TCCR2A|0x20;	// Make sure this channel PWM is on
