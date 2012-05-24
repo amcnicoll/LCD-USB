@@ -12,8 +12,8 @@
 
 // Pins
 #define F1PIN	5
-#define F2PIN	3
-#define LPIN	6
+#define F2PIN	6
+#define LPIN	3
 #define BLPIN	7
 
 // Ports
