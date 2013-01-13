@@ -9,6 +9,7 @@
 #include "usbdrv.h"
 #include "config.h"
 
+//lulz
 // Macros
 #define set_low(port,pin) port &= ~(1<<pin)
 #define set_high(port,pin) port |= (1<<pin)
